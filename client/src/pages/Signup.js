@@ -64,7 +64,7 @@ const Signup = () => {
           required
         />
 
-        <button className="w-full bg-blue-600 text-white py-2 rounded">
+        <button className="w-full bg-red-600 text-white py-2 rounded">
           Signup
         </button>
       </form>
