@@ -1,29 +1,19 @@
-const fs = require("fs");
-const path = require("path");
 const { google } = require("googleapis");
 
-const CREDENTIALS_PATH = path.join(__dirname, "../config/oauthCredentials.json");
-const TOKEN_PATH = path.join(__dirname, "../config/token.json");
-
 const getOAuthClient = () => {
-  const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH));
-  const { client_id, client_secret, redirect_uris } = credentials.installed;
-
   const oAuth2Client = new google.auth.OAuth2(
-    client_id,
-    client_secret,
-    redirect_uris[0]
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    process.env.GOOGLE_REDIRECT_URI
   );
 
-  if (fs.existsSync(TOKEN_PATH)) {
-    const token = JSON.parse(fs.readFileSync(TOKEN_PATH));
-    oAuth2Client.setCredentials(token);
+  if (process.env.GOOGLE_REFRESH_TOKEN) {
+    oAuth2Client.setCredentials({
+      refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+    });
   }
 
   return oAuth2Client;
 };
 
-module.exports = {
-  getOAuthClient,
-  TOKEN_PATH,
-};
+module.exports = { getOAuthClient };
