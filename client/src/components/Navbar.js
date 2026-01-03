@@ -11,10 +11,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-800 text-white px-6 py-4 flex justify-between items-center shadow">
+    <nav className="bg-red-800 text-white px-6 py-4 flex justify-between items-center shadow">
   <div>
     <h1 className="text-xl font-bold">University Institute of Computing</h1>
-    <p className="text-xs text-blue-200">
+    <p className="text-xs text-red-200">
       Patent Filing & Management Portal
     </p>
   </div>
